@@ -116,6 +116,18 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 }
+
+void dispImage(PROGMEM uint32_t img){
+  int tot = 0;
+  for(int i = 0; i < 32; i++){
+    for(int j = 0; j < 64; j++){
+      uint32_t dspPixel = pgm_read_dword_far(img + tot);
+      show_pixel(j, i, dspPixel);
+      tot ++;
+    }
+  }
+}
+
 uint8_t hex_to_red(uint32_t hex){
   return ((hex & 0xff0000) >> 16);
 }
